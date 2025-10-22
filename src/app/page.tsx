@@ -114,6 +114,7 @@ export default function ProductsPage() {
         <h2>{editingProduct ? "✏️ Edit Product" : "➕ Add New Product"}</h2>
 
         <div className="form-grid">
+          {/* Product Name */}
           <input
             type="text"
             placeholder="Product Name"
@@ -126,24 +127,30 @@ export default function ProductsPage() {
             required
           />
 
-          <input
-            type="number"
-            placeholder="Price"
-            value={editingProduct ? safePrice(editingProduct.price) : safePrice(newProduct.price)}
-            onChange={(e) =>
-              editingProduct
-                ? setEditingProduct({
-                    ...editingProduct,
-                    price: parseFloat(e.target.value) || 0,
-                  })
-                : setNewProduct({
-                    ...newProduct,
-                    price: parseFloat(e.target.value) || 0,
-                  })
-            }
-            required
-          />
+          {/* Price Field with Label */}
+          <div className="price-group">
+            <label htmlFor="price" className="price-label">Price:</label>
+            <input
+              id="price"
+              type="number"
+              placeholder="0.00"
+              value={editingProduct ? safePrice(editingProduct.price) : safePrice(newProduct.price)}
+              onChange={(e) =>
+                editingProduct
+                  ? setEditingProduct({
+                      ...editingProduct,
+                      price: parseFloat(e.target.value) || 0,
+                    })
+                  : setNewProduct({
+                      ...newProduct,
+                      price: parseFloat(e.target.value) || 0,
+                    })
+              }
+              required
+            />
+          </div>
 
+          {/* Category */}
           <input
             type="text"
             placeholder="Category"
@@ -155,6 +162,7 @@ export default function ProductsPage() {
             }
           />
 
+          {/* In Stock Checkbox */}
           <label className="checkbox-label">
             <input
               type="checkbox"
@@ -175,6 +183,7 @@ export default function ProductsPage() {
           </label>
         </div>
 
+        {/* Description */}
         <textarea
           placeholder="Description"
           rows={3}
@@ -186,6 +195,7 @@ export default function ProductsPage() {
           }
         />
 
+        {/* Buttons */}
         <div className="button-row">
           <button
             type="submit"
